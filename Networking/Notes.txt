@@ -1,0 +1,15 @@
+In short, Boost.Asio is a cross-platform C++ library mainly for networking and
+some other low-level input/output programming.
+
+Asio has by far surpassed them all; it was admitted into Boost in 2005,
+
+Remobo (http://www.remobo.com) that allows you to create your own Instant Private
+Network 
+IPN), libtorrent (http://www.rasterbar.com/products/libtorrent), which is a library that implements a Bittorrent client
+
+/*
+First, your program needs at least an io_service instance
+Asio uses io_service to talk to the operating system's input/output services.
+
+
+*/
