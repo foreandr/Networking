@@ -1,76 +1,37 @@
-#include<iostream>
-#include<fstream>
-#include<stdio.h>
-#include <stdlib.h>
-#include <Ws2tcpip.h> // NO IDEA
-#include <winsock2.h>
+#include <iostream>
+#include <boost/asio.hpp>
 
-#include <io.h> 
-using namespace std;
-
-class Client_socket {
-    fstream file;
-
-    int PORT;
-
-    int general_socket_descriptor;
-
-    struct sockaddr_in address;
-    int address_length;
-
-public:
-    Client_socket() {
-        create_socket();
-        PORT = 8050;
-
-        address.sin_family = AF_INET;
-        address.sin_port = htons(PORT);
-        address_length = sizeof(address);
-        if (inet_pton(AF_INET, "127.0.0.1", &address.sin_addr) <= 0) {
-            cout << "[ERROR] : Invalid address\n";
-        }
-
-        create_connection();
-
-        file.open(".//Data//Client//client_text.txt", ios::out | ios::trunc | ios::binary);
-        if (file.is_open()) {
-            cout << "[LOG] : File Creted.\n";
-        }
-        else {
-            cout << "[ERROR] : File creation failed, Exititng.\n";
-            exit(EXIT_FAILURE);
-        }
-    }
-
-    void create_socket() {
-        if ((general_socket_descriptor = socket(AF_INET, SOCK_STREAM, 0)) < 0) {
-            perror("[ERROR] : Socket failed.\n");
-            exit(EXIT_FAILURE);
-        }
-        cout << "[LOG] : Socket Created Successfully.\n";
-    }
-
-    void create_connection() {
-        if (connect(general_socket_descriptor, (struct sockaddr*)&address, sizeof(address)) < 0) {
-            perror("[ERROR] : connection attempt failed.\n");
-            exit(EXIT_FAILURE);
-        }
-        cout << "[LOG] : Connection Successfull.\n";
-    }
-
-    void receive_file() {
-        char buffer[1024] = {};
-        int valread = _read(general_socket_descriptor, buffer, 1024);
-        cout << "[LOG] : Data received " << valread << " bytes\n";
-        cout << "[LOG] : Saving data to file.\n";
-
-        file << buffer;
-        cout << "[LOG] : File Saved.\n";
-    }
-};
+using namespace boost::asio;
+using ip::tcp;
+using std::string;
+using std::cout;
+using std::endl;
 
 int main() {
-    Client_socket C;
-    C.receive_file();
+    boost::asio::io_service io_service;
+    //socket creation
+    tcp::socket socket(io_service);
+    //connection
+    socket.connect(tcp::endpoint(boost::asio::ip::address::from_string("127.0.0.1"), 9002));
+    // request/message from client
+    const string msg = "Hello from Client!\n";
+    boost::system::error_code error;
+    boost::asio::write(socket, boost::asio::buffer(msg), error);
+    if (!error) {
+        cout << "Client sent hello message!" << endl;
+    }
+    else {
+        cout << "send failed: " << error.message() << endl;
+    }
+    // getting response from server
+    boost::asio::streambuf receive_buffer;
+    boost::asio::read(socket, receive_buffer, boost::asio::transfer_all(), error);
+    if (error && error != boost::asio::error::eof) {
+        cout << "receive failed: " << error.message() << endl;
+    }
+    else {
+        const char* data = boost::asio::buffer_cast<const char*>(receive_buffer.data());
+        cout << data << endl;
+    }
     return 0;
 }
