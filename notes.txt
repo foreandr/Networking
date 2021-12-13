@@ -1,0 +1,4 @@
+/* must be EXACT same port - obviously.
+make sure relevant ports are open
+on ubuntu boost, remember to recompile and launch with that weird command
+*/
