@@ -8,7 +8,6 @@ using std::cout;
 using std::endl;
 
 constexpr auto FOREIGN_IP_ADDRESS = "2607:fea8:2d5f:4f00:bc91:7044:66a3:a23f";
-std::string lenCeaser(std::string string);
 int main() {
     boost::asio::io_service io_service;
     //socket creation
@@ -19,7 +18,6 @@ int main() {
     
     // request/message from client                                                                                       
     string msg = "Hello from Client!\n";
-    msg = lenCeaser(msg);
     boost::system::error_code error;
     boost::asio::write(socket, boost::asio::buffer(msg), error);
     if (!error) {

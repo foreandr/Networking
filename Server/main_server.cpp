@@ -35,16 +35,16 @@ int main() {
     tcp::socket socket_(io_service);//socket creation 
     
     //waiting for connection
-    cout << "Waiting for connection...\n";
+    cout << "Waiting for connection...\n\n";
     acceptor_.accept(socket_); // listening for connections
 
     //read operation
     string message = read_(socket_); // message coming from the user
-    cout << lenCeaserDecrypt(message) << endl; // decrypt the message
+    cout << "Encrypted Message from server" << message; // msg seems to have newline
+    cout << "Decrypted Message from server" << lenCeaser2decrypt(message) << "\n"; 
 
     //write operation
     send_(socket_, "Hello From Server!");
-    return 0;
 
 }
 string read_(tcp::socket& socket) {

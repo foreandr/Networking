@@ -3,6 +3,7 @@
 #include "encrypytionTester.h"
 int main() {
 	std::string name = "andre";
-	std::cout << lenCeaser(name);
+	std::string nameEN = lenCeaser2encrypt(name);
+	std::cout << nameEN << "\n" << lenCeaser2decrypt(nameEN);
 
 }
