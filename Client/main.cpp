@@ -12,7 +12,7 @@ int main() {
     //socket creation
     tcp::socket socket(io_service);
     //connection
-    socket.connect(tcp::endpoint(boost::asio::ip::address::from_string("127.0.0.1"), 9002));
+    socket.connect(tcp::endpoint(boost::asio::ip::address::from_string("2607:fea8:2d5f:4f00:bc91:7044:66a3:a23f"), 9002));
     // request/message from client
     const string msg = "Hello from Client!\n";
     boost::system::error_code error;

@@ -13,10 +13,11 @@ int main() {
 
     boost::asio::io_service io_service;
     //listen for new connection
-    tcp::acceptor acceptor_(io_service, tcp::endpoint(tcp::v4(), 9002)); // port num
-    //socket creation 
+    tcp::acceptor acceptor_(io_service, tcp::endpoint(tcp::v6(), 9002)); // port num
+                                                                         //socket creation 
     tcp::socket socket_(io_service);
     //waiting for connection
+    cout << "Waiting for conneciton...";
     acceptor_.accept(socket_); // listening for connections
     //read operation
     string message = read_(socket_);
