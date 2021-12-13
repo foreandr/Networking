@@ -1,6 +1,21 @@
 #include <iostream>
 #include <boost/asio.hpp>
+/* SOCKET IS
+* IP ADDRESS & PORT NUMBER / APPLICATION NUMBER / PROTOCOL NUMBER
+* CONNECTION ORIENTED? - care for reply or not
+* 
+*    tcp 53 & udp 53 different
+     
+     datagram sockets
+     stream sockets
+     raw sockets
 
+     socket pair - SOURCE/DEST IP, SOURCE DEST PORT
+
+     COMMON SYS CALLS
+        - SOCKET, BIND CONNECT, LISTEN, ACCEPT, READ WRITE, CLOSE
+
+*/
 using namespace boost::asio;
 using ip::tcp;
 using std::string;
@@ -9,22 +24,25 @@ using std::endl;
 
 string read_(tcp::socket& socket);
 void send_(tcp::socket& socket, const string& message);
+
+//SERVER
 int main() {
 
     boost::asio::io_service io_service;
     //listen for new connection
-    tcp::acceptor acceptor_(io_service, tcp::endpoint(tcp::v6(), 9002)); // port num
-                                                                         //socket creation 
-    tcp::socket socket_(io_service);
+    tcp::acceptor acceptor_(io_service, tcp::endpoint(tcp::v6(), 9002)); // port num //ipv6 in particular
+    tcp::socket socket_(io_service);//socket creation 
+    
     //waiting for connection
-    cout << "Waiting for conneciton...";
+    cout << "Waiting for connection...\n";
     acceptor_.accept(socket_); // listening for connections
+
     //read operation
-    string message = read_(socket_);
+    string message = read_(socket_); // message coming from the user
     cout << message << endl;
+
     //write operation
     send_(socket_, "Hello From Server!");
-    cout << "Servent sent Hello message to Client!" << endl;
     return 0;
 
 }
