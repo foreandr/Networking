@@ -27,6 +27,9 @@
     <ClInclude Include="unstd.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="encrypytionTester.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Text Include="Notes.txt" />

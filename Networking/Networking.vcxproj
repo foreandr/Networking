@@ -153,6 +153,7 @@
   <ItemGroup>
     <ClInclude Include="asio.h" />
     <ClInclude Include="cfile.h" />
+    <ClInclude Include="encrypytionTester.h" />
     <ClInclude Include="main.h" />
     <ClInclude Include="unstd.h" />
   </ItemGroup>
@@ -160,7 +161,12 @@
     <Text Include="Notes.txt" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="main.cpp" />
+    <ClCompile Include="main.cpp">
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">C:\Users\Andre\source\repos\Networking\Networking;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">C:\Users\Andre\source\repos\Networking\Networking;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Users\Andre\source\repos\Networking\Networking;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:\Users\Andre\source\repos\Networking\Networking;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

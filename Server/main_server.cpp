@@ -1,5 +1,6 @@
 #include <iostream>
 #include <boost/asio.hpp>
+#include "encryption.h"
 /* SOCKET IS
 * IP ADDRESS & PORT NUMBER / APPLICATION NUMBER / PROTOCOL NUMBER
 * CONNECTION ORIENTED? - care for reply or not
@@ -39,7 +40,7 @@ int main() {
 
     //read operation
     string message = read_(socket_); // message coming from the user
-    cout << message << endl;
+    cout << lenCeaserDecrypt(message) << endl; // decrypt the message
 
     //write operation
     send_(socket_, "Hello From Server!");
