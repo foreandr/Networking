@@ -26,6 +26,7 @@ int main() {
     else {
         cout << "send failed: " << error.message() << endl;
     }
+
     // getting response from server
     boost::asio::streambuf receive_buffer;
     boost::asio::read(socket, receive_buffer, boost::asio::transfer_all(), error);
@@ -34,7 +35,8 @@ int main() {
     }
     else {
         const char* data = boost::asio::buffer_cast<const char*>(receive_buffer.data());
-        cout << data << endl;
+        cout << "Data recieved from server: "<< data << endl;
+
     }
     return 0;
 }

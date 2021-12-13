@@ -40,8 +40,8 @@ int main() {
 
     //read operation
     string message = read_(socket_); // message coming from the user
-    cout << "Encrypted Message from server" << message; // msg seems to have newline
-    cout << "Decrypted Message from server" << lenCeaser2decrypt(message) << "\n"; 
+    cout << "Encrypted Message from server: " << message; // msg seems to have newline
+    cout << "Decrypted Message from server: " << lenCeaser2decrypt(message) << "\n"; 
 
     //write operation
     send_(socket_, "Hello From Server!");
