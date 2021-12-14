@@ -20,6 +20,6 @@ while True:
     full_msg += msg.decode("utf-8")
     #print(msg.decode("utf-8"))
 
-print(full_msg)
-print(len(full_msg))
-print(full_msg[header_size:])
+print(f"Full message: {full_msg}")
+print(f"Length of full message: {len(full_msg)}")
+print(f"MESSAGE: {full_msg[header_size:]}")
