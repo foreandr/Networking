@@ -2,3 +2,19 @@
 make sure relevant ports are open
 on ubuntu boost, remember to recompile and launch with that weird command
 */
+
+Sockets and the socket API are used to send messages across a network
+Python’s socket module to write your own client-server applications.
+Their use originated with ARPANET in 1971 and later became an API in the Berkeley Software Distribution (BSD) operating system released in 1983 called Berkeley sockets.
+When the Internet took off in the 1990s with the World Wide Web, so did network programming
+
+MAIN FUNCTION
+socket()
+bind()
+listen()
+accept()
+connect()
+connect_ex()
+send()
+recv()
+close()
