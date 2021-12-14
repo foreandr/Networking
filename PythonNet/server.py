@@ -6,6 +6,10 @@
 # bind() is used to associate the socket with a specific network interface and port number:
 # Port to listen on (non-privileged ports are > 1023)
 # There’s no need to call s.close(): if we use WITH
+# “Unlike send(), sendall() continues to send data from bytes until either all data has been sent or an error occurs. None is returned on success.”
+# select() allows you to check for I/O completion on more than one socket
+# So you can call select() to see which sockets have I/O ready for reading and/or writing.
+
 '''
 import socket
 
