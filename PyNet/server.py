@@ -4,13 +4,14 @@ import myFunctions
 
 '''CONSTANTS '''
 header_size = 10
-HOST = '127.0.0.1'  # not using here
+#HOST = '2607:fea8:2d5f:4f00:b542:a699:de90:ecb4'  # not using here
 PORT = 9001
 QUEUE_SIZE = 5  # for high traffic
 
 '''CREATE AND OPEN SOCKET'''
-s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)  # sits at an ip at a port
-s.bind((HOST, PORT))
+# HAD TO CHANGE AF_INET TO AF_INET6
+s = socket.socket(socket.AF_INET6, socket.SOCK_STREAM)  # sits at an ip at a port
+s.bind(("", PORT)) # i CAN REMOVE THE HOST HERE FOR SOME REASON??
 s.listen(QUEUE_SIZE)
 print("Waiting for connection...")
 
